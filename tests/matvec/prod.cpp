@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005, 2006 by CodeSourcery
+// Copyright (c) 2005, 2006, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -10,6 +10,9 @@
 #include <vsip/support.hpp>
 #include <vsip/tensor.hpp>
 #include <vsip/math.hpp>
+#include <test/precision.hpp>
+#include <test/random.hpp>
+#include <test/diff.hpp>
 #include <test.hpp>
 #include <test/ref/matvec.hpp>
 #include "prod.hpp"

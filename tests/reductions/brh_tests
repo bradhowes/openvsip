@@ -1,0 +1,47 @@
+#!/bin/bash
+
+TOP="../../.."
+DIR="${TOP}/tests/reductions"
+TESTS="$(cd ${DIR} && ls -1 -- *.cpp)"
+
+INSTALL_DIR="/opt/homebrew"
+CPP="c++"
+CPPFLAGS="-I${TOP}/tests -I${TOP}/support -I${INSTALL_DIR}/include"
+LDFLAGS="-L${INSTALL_DIR}/lib -lovxx -framework Accelerate"
+
+function build()
+{
+    local exec="${1}"
+    local file="${exec}.cpp"
+    if [[ ! -x "${exec}" || "${file}" -nt "${exec}" ]]; then
+        "${CPP}" -o "${exec}" ${CPPFLAGS} ${LDFLAGS} "${DIR}/${file}" > "${file}.log" 2>&1
+        status=$?
+        if [[ "${status}" = "0" ]]; then
+            echo "compile ${file} - OK"
+        else
+            echo "compile ${file} - FAILED (see ${file}.log)"
+            rm -f "${exec}"
+        fi
+    fi
+    return ${status}
+}
+
+function run()
+{
+    local exec="${1}"
+    DYLD_LIBRARY_PATH=${INSTALL_DIR}/lib "./${exec}" > "${exec}.log" 2>&1
+    status=$?
+    if [[ "${status}" = "0" ]]; then
+        echo "run ${exec} - OK"
+    else
+        echo "run ${exec} - FAILED (see ${exec}.log)"
+    fi
+    return ${status}
+}
+
+for file in ${TESTS}; do
+    exec="${file%.cpp}"
+    build "${exec}"
+    status=$?
+    [[ "${status}" = "0" ]] && run "${exec}"
+done

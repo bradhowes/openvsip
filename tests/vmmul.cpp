@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005, 2006 by CodeSourcery
+// Copyright (c) 2005, 2006, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -22,6 +22,8 @@
 #include <vsip/selgen.hpp>
 #include <ovxx/domain_utils.hpp>
 #include <test.hpp>
+#include <test/ramp.hpp>
+#include <test/diff.hpp>
 
 using namespace ovxx;
 

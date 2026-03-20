@@ -1,5 +1,5 @@
 dnl
-dnl Copyright (c) 2005-2010 by CodeSourcery
+dnl Copyright (c) 2005-2010, 2026 by CodeSourcery
 dnl Copyright (c) 2013 Stefan Seefeld
 dnl All rights reserved.
 dnl
@@ -11,6 +11,10 @@ dnl Autoconf initialization
 dnl ------------------------------------------------------------------
 AC_PREREQ(2.56)
 AC_INIT(OpenVSIP, 1.0, devel@openvsip.org, openvsip)
+
+LT_INIT
+AC_SUBST([LIBTOOL_DEPS])
+AC_CONFIG_MACRO_DIRS([m4])
 
 ######################################################################
 # Configure command line arguments.
@@ -446,33 +450,32 @@ AC_CHECK_SIZEOF(int)
 AC_CHECK_SIZEOF(long)
 AC_CHECK_SIZEOF(long long)
 
-if test "$enable_exceptions" != "no"; then
-  AC_MSG_CHECKING([for exceptions])
-  AC_COMPILE_IFELSE([AC_LANG_SOURCE([
-    #include <stdexcept>
+dnl if test "$enable_exceptions" != "no"; then
+dnl   AC_MSG_CHECKING([for exceptions])
+dnl   AC_COMPILE_IFELSE([AC_LANG_SOURCE([
+dnl     #include <stdexcept>
 
-    void function() throw (std::bad_alloc)
-    { throw std::bad_alloc(); }
+dnl     void function() throw (std::bad_alloc)
+dnl     { throw std::bad_alloc(); }
 
-    int main()
-    {
-      int i = 0;
-      try { function(); } catch(std::bad_alloc e) { i = 1; }
-      (void)i;
-    }
-    ])],
-    [AC_MSG_RESULT(yes)
-     has_exceptions=1],
-    [AC_MSG_RESULT(no)
-     has_exceptions=0
-     if test "$enable_exceptions" = "yes"; then
-       AC_MSG_ERROR([Exceptions enabled (--enable-exceptions), but
-                     not supported by the compiler]) ])
-     fi
-else
-  has_exceptions=0
-fi
-
+dnl     int main()
+dnl     {
+dnl       int i = 0;
+dnl       try { function(); } catch(std::bad_alloc e) { i = 1; }
+dnl       (void)i;
+dnl     }
+dnl     ])],
+dnl     [AC_MSG_RESULT(yes)
+dnl      has_exceptions=1],
+dnl     [AC_MSG_RESULT(no)
+dnl      has_exceptions=0
+dnl      if test "$enable_exceptions" = "yes"; then
+dnl        AC_MSG_ERROR([Exceptions enabled (--enable-exceptions), but not supported by the compiler]) ])
+dnl      fi
+dnl else
+dnl   has_exceptions=0
+dnl fi
+has_exceptions=1
 if test "$enable_exceptions" = "probe"; then
   if test "$has_exceptions" = "1"; then
     status_exceptions="probe -- found"

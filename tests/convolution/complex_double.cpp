@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2008 by CodeSourcery
+// Copyright (c) 2008, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -7,6 +7,8 @@
 // license contained in the accompanying LICENSE.GPL file.
 
 #define VERBOSE 0
+
+#include <test/diff.hpp>
 
 #include <vsip/vector.hpp>
 #include <vsip/signal.hpp>

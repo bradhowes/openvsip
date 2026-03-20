@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005, 2006 by CodeSourcery
+// Copyright (c) 2005, 2006, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -12,6 +12,10 @@
 #include <vsip/support.hpp>
 #include <vsip/complex.hpp>
 #include <vsip/matrix.hpp>
+#include <test/precision.hpp>
+#include <test/random.hpp>
+#include <test/diff.hpp>
+#include <test/ramp.hpp>
 #include <test.hpp>
 
 using namespace ovxx;

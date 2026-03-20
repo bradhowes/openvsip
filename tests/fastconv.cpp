@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2007 by CodeSourcery
+// Copyright (c) 2007, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -12,6 +12,7 @@
 #include <vsip/selgen.hpp>
 #include <vsip/signal.hpp>
 #include <test.hpp>
+#include <test/diff.hpp>
 
 using namespace ovxx;
 

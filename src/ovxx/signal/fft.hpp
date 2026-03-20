@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2006, 2007, 2008 by CodeSourcery
+// Copyright (c) 2006, 2007, 2008, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -116,13 +116,13 @@ public:
   forward() const VSIP_NOTHROW
   { return E == -1;}
   
-  float impl_performance(char const *what) const
-  {
-    if      (!strcmp(what, "mops")) return this->mops();
-    else if (!strcmp(what, "time")) return this->total();
-    else if (!strcmp(what, "count")) return this->count();
-    else return 0.f;
-  }
+  // float impl_performance(char const *what) const
+  // {
+  //   if      (!strcmp(what, "mops")) return this->mops();
+  //   else if (!strcmp(what, "time")) return this->total();
+  //   else if (!strcmp(what, "count")) return this->count();
+  //   else return 0.f;
+  // }
 
 protected:
   Domain<dim> input_size_;

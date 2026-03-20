@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2013 Stefan Seefeld
+// Copyright (c) 2013, 2026 Stefan Seefeld
 // All rights reserved.
 //
 // This file is part of OpenVSIP. It is made available under the
@@ -12,6 +12,7 @@
 #include <vsip/selgen.hpp>
 #include <ovxx/strided.hpp>
 #include <test.hpp>
+#include <test/randomize.hpp>
 #include <cassert>
 #include <iostream>
 

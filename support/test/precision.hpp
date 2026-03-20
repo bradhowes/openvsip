@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2006 CodeSourcery
+// Copyright (c) 2006, 2026 CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -17,7 +17,7 @@ template <typename T>
 struct precision
 {
   typedef T type;
-  typedef typename scalar_of<T>::type scalar_type;
+  typedef typename ovxx::scalar_of<T>::type scalar_type;
 
   static T eps;
 

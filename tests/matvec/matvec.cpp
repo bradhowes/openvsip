@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005, 2006 by CodeSourcery
+// Copyright (c) 2005, 2006, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -8,6 +8,8 @@
 
 #include <cassert>
 #include <math.h>
+
+#include <test/random.hpp>
 
 #include <vsip/initfin.hpp>
 #include <vsip/support.hpp>

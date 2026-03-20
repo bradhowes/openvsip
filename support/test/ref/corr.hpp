@@ -67,7 +67,7 @@ corr(vsip::bias_type               bias,
   using vsip::Domain;
   using vsip::unbiased;
 
-  typedef typename scalar_of<T>::type scalar_type;
+  typedef typename ovxx::scalar_of<T>::type scalar_type;
 
   length_type M = ref.size(0);
   length_type N = in.size(0);
@@ -141,7 +141,7 @@ corr(vsip::bias_type               bias,
   using vsip::Domain;
   using vsip::unbiased;
 
-  typedef typename scalar_of<T>::type scalar_type;
+  typedef typename ovxx::scalar_of<T>::type scalar_type;
 
   length_type Mr = ref.size(0);
   length_type Mc = ref.size(1);

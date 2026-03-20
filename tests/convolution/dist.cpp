@@ -8,6 +8,7 @@
 
 #define VERBOSE 0
 
+#include <test/diff.hpp>
 #include <vsip/vector.hpp>
 #include <vsip/signal.hpp>
 #include <vsip/initfin.hpp>

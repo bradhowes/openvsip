@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005 CodeSourcery
+// Copyright (c) 2005, 2026 CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -144,13 +144,13 @@ public:
 
   void reset() VSIP_NOTHROW { backend_->reset();}
 
-  float impl_performance(char const *what) const VSIP_NOTHROW
-  {
-    if      (!strcmp(what, "mops"))  return this->mflops();
-    else if (!strcmp(what, "time"))  return this->total();
-    else if (!strcmp(what, "count")) return this->count();
-    else return 0.f;
-  }
+  // float impl_performance(char const *what) const VSIP_NOTHROW
+  // {
+  //   if      (!strcmp(what, "mops"))  return this->mflops();
+  //   else if (!strcmp(what, "time"))  return this->total();
+  //   else if (!strcmp(what, "count")) return this->count();
+  //   else return 0.f;
+  // }
 
   friend class vsip::impl::diag_detail::Diagnose_fir;
 private:

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005 CodeSourcery
+// Copyright (c) 2005, 2026 CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -27,10 +27,15 @@ template <typename R, typename F>
 struct unary_traits
 {
   template <typename A>
-  struct Type : std::unary_function<A, R>
+  struct Type
   {
+    using argument_type = A;
+    using result_type = R;
+
     Type(F f) : function_(f) {}
+
     R operator()(A a) const { return function_(a);}
+
     F function_;
   };
 };
@@ -40,12 +45,16 @@ template <typename F>
 struct unary_traits<typename F::result_type, F>
 {
   template <typename Dummy>
-  struct Type : std::unary_function<typename F::argument_type,
-				    typename F::result_type>
+  struct Type
   {
+    using argument_type = typename F::argument_type;
+    using result_type = typename F::result_type;
+
     Type(F f) : function_(f) {}
-    typename F::result_type operator()(typename F::argument_type a) const 
+
+    typename F::result_type operator()(typename F::argument_type a) const
     { return function_(a);}
+
     F function_;
   };
 };
@@ -55,9 +64,16 @@ template <typename A, typename R>
 struct unary_traits<R, R (*)(A)>
 {
   template <typename Dummy>
-  struct Type : std::pointer_to_unary_function<A, R>
+  struct Type
   {
-    Type(R (*f)(A)) : std::pointer_to_unary_function<A, R>(f) {}
+    using argument_type = A;
+    using result_type = R;
+
+    Type(R (*f)(A)) : function_(f) {}
+
+    R operator()(A a) const { return function_(a);}
+
+    R (*function_)(A);
   };
 };
 
@@ -65,10 +81,16 @@ template <typename R, typename F>
 struct binary_traits
 {
   template <typename A1, typename A2>
-  struct Type : std::binary_function<A1, A2, R>
+  struct Type
   {
+    using first_argument_type = A1;
+    using second_argument_type = A2;
+    using result_type = R;
+
     Type(F f) : function_(f) {}
+
     R operator()(A1 a1, A2 a2) const { return function_(a1, a2);}
+
     F function_;
   };
 };
@@ -77,14 +99,18 @@ template <typename F>
 struct binary_traits<typename F::result_type, F>
 {
   template <typename A1, typename A2>
-  struct Type : std::binary_function<typename F::first_argument_type,
-                                     typename F::second_argument_type,
-                                     typename F::result_type>
+  struct Type
   {
+    using first_argument_type = typename F::first_argument_type;
+    using second_argument_type = typename F::second_argument_type;
+    using result_type = typename F::result_type;
+
     Type(F f) : function_(f) {}
+
     typename F::result_type operator()(typename F::first_argument_type a1,
-				       typename F::second_argument_type a2) const
+                                       typename F::second_argument_type a2) const
     { return function_(a1, a2);}
+
     F function_;
   };
 };
@@ -93,9 +119,17 @@ template <typename A1, typename A2, typename R>
 struct binary_traits<R, R (*)(A1, A2)> 
 {
   template <typename Dummy1, typename Dummy2>
-  struct Type : std::pointer_to_binary_function<A1, A2, R>
+  struct Type
   {
-    Type(R (*f)(A1, A2)) : std::pointer_to_binary_function<A1, A2, R>(f) {}
+    using first_argument_type = A1;
+    using second_argument_type = A2;
+    using result_type = R;
+
+    Type(R (*f)(A1, A2)) : function_(f) {}
+
+    R operator()(A1 a, A2 b) const { return function_(a, b);}
+
+    R (*function_)(A1, A2);
   };
 };
 
@@ -105,13 +139,15 @@ struct ternary_traits
   template <typename A1, typename A2, typename A3>
   struct Type
   {
-    typedef A1 first_argument_type;
-    typedef A2 second_argument_type;
-    typedef A3 third_argument_type;
-    typedef R result_type;
+    using first_argument_type = A1;
+    using second_argument_type = A2;
+    using third_argument_type = A3;
+    using result_type = R;
 
     Type(F f) : function_(f) {}
+
     R operator()(A1 a1, A2 a2, A3 a3) const { return function_(a1, a2, a3);}
+
     F function_;
   };
 };
@@ -122,17 +158,17 @@ struct ternary_traits<R, R (*)(A1, A2, A3)>
   template <typename Dummy1, typename Dummy2, typename Dummy3>
   struct Type
   {
-    typedef A1 first_argument_type;
-    typedef A2 second_argument_type;
-    typedef A3 third_argument_type;
-    typedef R result_type;
+    using first_argument_type = A1;
+    using second_argument_type = A2;
+    using third_argument_type = A3;
+    using result_type = R;
 
     Type(R (*f)(A1, A2, A3)) : function_(f) {}
     R operator()(A1 a1, A2 a2, A3 a3) const { return function_(a1, a2, a3);}
+
     R (*function_)(A1, A2, A3);
   };
 };
-
 
 /// These classes determine the return types for the unary, binary, and ternary
 /// functions, respectively.
@@ -236,7 +272,7 @@ unary(F f, View<T, Block> v)
     View, T, Block> type_traits;
   typedef typename type_traits::block_type block_type;
   typedef typename type_traits::view_type view_type;
-  return view_type(block_type(std::ptr_fun(f), v.block()));
+  return view_type(block_type(f, v.block()));
 }
 
 template <typename R, typename F,

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005, 2006, 2007 by CodeSourcery
+// Copyright (c) 2005, 2006, 2007, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -12,6 +12,7 @@
 #define FILL_RANDOM 1
 
 #include <cmath>
+#include <test/diff.hpp>
 
 #include <vsip/initfin.hpp>
 #include <vsip/support.hpp>
