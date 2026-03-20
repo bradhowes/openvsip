@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2005, 2006 by CodeSourcery
+// Copyright (c) 2005, 2006, 2026 by CodeSourcery
 // Copyright (c) 2013 Stefan Seefeld
 // All rights reserved.
 //
@@ -17,6 +17,7 @@
 #include <ovxx/length.hpp>
 #include <ovxx/domain_utils.hpp>
 #include <test.hpp>
+#include <test/create_view.hpp>
 #include "util.hpp"
 #include <unistd.h>
 #include <cstdio>

@@ -45,3 +45,12 @@ for file in ${TESTS}; do
     status=$?
     [[ "${status}" = "0" ]] && run "${exec}"
 done
+
+for dir in cholesky; do
+    echo ">> ${dir}"
+    [[ -e "${dir}" ]] || mkdir "${dir}"
+    cd "${dir}" || exit 1
+    bash "../../${DIR}/${dir}/brh_tests"
+    echo "<< ${dir}"
+    cd .. || exit 1
+done
