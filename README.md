@@ -10,12 +10,12 @@ builds with the following packages:
 
 ### Changes
 
-* At the time of the fork, the original had outdated `config.guess` and `config.sub` which caused failures on macOS. This
-repo has up-to-date values that were obtained from using `libtool` -- a better approach might be to depend on `libtool`
-being run perhaps from within the `autogen.sh` script that currently generates the `configure` script. 
-* The `configure.ac` file disable checking for exceptions and hardcodes them enabled them.
-* There are custom test scripts to overcome the lack of a working QMTest setup (requires Python 2 and perhaps Windows).
-* Various code fixes to handle compiler errors due to that absence of old, deprecated STL functions.
+* At the time of the fork, the original had outdated `config.guess` and `config.sub` files which caused failures on macOS. This
+repo has up-to-date version that were obtained by using `libtool`. A better approach might be to depend on `libtool`
+being run perhaps from within the `autogen.sh` script that currently generates the `configure` script.
+* The `configure.ac` file disables checking for exceptions and hardcodes them enabled.
+* There are crude custom test scripts to overcome the lack of a working QMTest setup (requires Python 2 and perhaps Windows).
+* Various code fixes to handle compiler errors due to the absence of previously-deprecated STL classes/functions.
 
 ### To Use
 
