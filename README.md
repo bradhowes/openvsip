@@ -1,12 +1,21 @@
 # OpenVSIP Fork Info
 
 This is a WIP fork of the [OpenVSIP](https://github.com/sefanseefeld/openvsip) repository for use on macOS 26.3 (Tahoe).
-It works with GCC and Clang C++ 17 compilers and uses Apple's Accelerate framework for LAPACK and CBLAS routines.
+It works with GCC and Clang C++ 17 compilers and uses Apple's Accelerate framework for LAPACK and CBLAS routines. It
+builds with the following packages:
 
-At the time of the fork, the original had outdated `config.guess` and `config.sub` which caused failures on macOS. This
+* OpenMPI v5.0.9
+* FFTW v3.3.10
+* LAPACK from Apple's Accelerate framework
+
+### Changes
+
+* At the time of the fork, the original had outdated `config.guess` and `config.sub` which caused failures on macOS. This
 repo has up-to-date values that were obtained from using `libtool` -- a better approach might be to depend on `libtool`
-being run perhaps from within the `autogen.sh` script that currently generates the `configure` script. There are also
-some custom test scripts to overcome the lack of a working QMTest setup (requires Python 2 and perhaps Windows).
+being run perhaps from within the `autogen.sh` script that currently generates the `configure` script. 
+* The `configure.ac` file disable checking for exceptions and hardcodes them enabled them.
+* There are custom test scripts to overcome the lack of a working QMTest setup (requires Python 2 and perhaps Windows).
+* Various code fixes to handle compiler errors due to that absence of old, deprecated STL functions.
 
 ### To Use
 
